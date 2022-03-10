@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Insert form{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content%}
+

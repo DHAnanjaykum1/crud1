@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}calling data{% endblock title %}
+
+{% block content %}
+<div class="container">
+        <div class="col-12">
+            <table class="table">
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Contact</td>
+                    <td>Email</td>
+                    <td>City</td>
+                    <td>Action</td>
+                </tr>
+                {% for data in object_list %}
+                    <tr>
+                        <td>{{ data.id}}</td>
+                        <td>{{ data.name}}</td>
+                        <td>{{ data.contact}}</td>
+                        <td>{{ data.email}}</td>
+                        <td>{{ data.city}}</td>
+                        <td>
+                            <a href="{% url 'delete' data.id %}" class="btn btn-danger">X</a>
+                            <a href="{% url 'edit' data.id %}" class="btn btn-danger">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                   <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a class="page-item page-link" href="?page={{page_obj.previous_page_number}}">Prev</a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <a class="page-item page-link" href="?page={{page_obj.next_page_number}}">next</a>
+                    {% endif %}
+                        
+                   </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock content %}
+
